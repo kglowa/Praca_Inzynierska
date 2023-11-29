@@ -25,7 +25,7 @@ class OrderShipmentController extends Controller
     {
         $order = Request::createFromGlobals()->get("user_id");
         //$user = DB::table('equipment')->where('user_id', $order)->first();
-        var_dump($request->all());
+        dd($request->all());
 //        var_dump($request->post("user_id"));
 //        var_dump($request->only(["user_id"]));
 //        var_dump($request->user_id);

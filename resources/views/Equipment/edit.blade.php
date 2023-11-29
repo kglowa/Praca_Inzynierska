@@ -143,17 +143,16 @@
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#btn_pdf').on('click',function() {
-                                    $.post('http://127.0.0.1:8000/mail', {data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") }});
 
-                                    {{--$.ajax({--}}
-                                    {{--     method: "POST",--}}
-                                    {{--     url: "http://127.0.0.1:8000/mail",--}}
-                                    {{--     data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },--}}
-                                    {{--     success: function(data) {--}}
-                                    {{--         console.log($('#btn_pdf').data("id"));--}}
-                                    {{--         alert(data);--}}
-                                    {{--     },--}}
-                                    {{-- })--}}
+                                     $.ajax({
+                                         method: "POST",
+                                         url: @js(route('equipment.index')),
+                                         data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
+                                         success: function(data) {
+                                             console.log($('#btn_pdf').data("id"));
+                                             alert(data);
+                                         },
+                                     })
                                 })
                             });
                         </script>
