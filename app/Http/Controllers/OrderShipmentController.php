@@ -21,9 +21,9 @@ class OrderShipmentController extends Controller
      *
      * @return JsonResponse
      */
-    public function post(Request $request): RedirectResponse
+    public function post(Request $request)
     {
-        $order = Request::createFromGlobals()->get("user_id");
+       // $order = Request::createFromGlobals()->get("user_id");
         //$user = DB::table('equipment')->where('user_id', $order)->first();
         dd($request->all());
 //        var_dump($request->post("user_id"));
@@ -34,7 +34,7 @@ $user = User::find($userID);
 
 //        dd($request->all());
         Mail::to($user)->send(new Protocol());
-        return response()->json();
+        return ' ';
 
 
     }

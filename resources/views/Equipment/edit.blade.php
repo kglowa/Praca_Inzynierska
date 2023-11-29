@@ -90,7 +90,7 @@
                                     </button>
 {{--                                    <a class="float-end" href="{{route('equipment.index')}}">--}}
 
-                                        <button type="button" class="btn btn-primary bg-dark" id="btn_pdf" data-id="{{$equipment->user_id}}" >
+                                        <button type="button" class="btn btn-primary bg-dark" id="btn_pdf" data-id="{{$equipment->user_id}}" form="" >
                                         PDF
                                         </button>
 {{--                                    </a>--}}
@@ -146,7 +146,7 @@
 
                                      $.ajax({
                                          method: "POST",
-                                         url: @js(route('equipment.index')),
+                                         url: @js(route('order.store')),
                                          data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
                                          success: function(data) {
                                              console.log($('#btn_pdf').data("id"));
