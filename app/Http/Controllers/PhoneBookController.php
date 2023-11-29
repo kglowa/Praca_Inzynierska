@@ -37,7 +37,7 @@ class PhoneBookController extends Controller
 
            $vcard->setSavePath(public_path('vcf'));
            $vcard->save();
-
+            response($vcard->download());
 
 
 

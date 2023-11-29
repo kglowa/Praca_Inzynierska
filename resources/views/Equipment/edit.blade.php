@@ -88,11 +88,12 @@
                                     <button type="submit" class="btn btn-primary bg-dark" id="btn_edit">
                                         Zmień
                                     </button>
-                                    <a class="float-end" href="{{route('equipment.index')}}">
+{{--                                    <a class="float-end" href="{{route('equipment.index')}}">--}}
 
-                                        <button type="button" class="btn btn-primary bg-dark" id="btn_pdf" data-id="{{$equipment->user_id}}" value="{{$equipment->user_id}}">
+                                        <button type="button" class="btn btn-primary bg-dark" id="btn_pdf" data-id="{{$equipment->user_id}}" >
                                         PDF
-                                        </button></a>
+                                        </button>
+{{--                                    </a>--}}
                                     <button  type="button"  class="btn btn-danger btn-danger " id="btn_delete" data-id="{{$equipment->id}}" style="width: 65px; margin-left: 10px">
                                         X
                                     </button>
@@ -102,7 +103,7 @@
                         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
                         <script type="text/javascript">
                             $(document).ready(function() {
-                                $('#btn_delete').click(function() {
+                                $('#btn_delete').on('click',function() {
                                     Swal.fire({
                                         title: "Czy jesteś pewny?",
                                         text: "Zmian nie da się przywrócić",
@@ -141,16 +142,18 @@
                         </script>
                         <script type="text/javascript">
                             $(document).ready(function() {
-                                $('#btn_pdf').click(function() {
-                                     $.ajax({
-                                         method: "POST",
-                                         url: "http://127.0.0.1:8000/order",
-                                         data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
-                                         success: function(data) {
-                                             console.log($('#btn_pdf').data("id"));
-                                             alert(data);
-                                         },
-                                     })
+                                $('#btn_pdf').on('click',function() {
+                                    $.post('http://127.0.0.1:8000/mail', {data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") }});
+
+                                    {{--$.ajax({--}}
+                                    {{--     method: "POST",--}}
+                                    {{--     url: "http://127.0.0.1:8000/mail",--}}
+                                    {{--     data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },--}}
+                                    {{--     success: function(data) {--}}
+                                    {{--         console.log($('#btn_pdf').data("id"));--}}
+                                    {{--         alert(data);--}}
+                                    {{--     },--}}
+                                    {{-- })--}}
                                 })
                             });
                         </script>

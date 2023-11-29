@@ -17,12 +17,10 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});
 Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class, 'index'])->name('phonebook');
 
-Route::post('order', [\App\Http\Controllers\OrderShipmentController::class, 'store'])->name('order.store');
+Route::post('/mail', [\App\Http\Controllers\OrderShipmentController::class, 'post'])->name('order.store');
 
 
 Route::get('users/list', [UserController::class, 'index'])->name('users');
