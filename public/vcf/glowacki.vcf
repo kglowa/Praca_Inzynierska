@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+REV:2023-11-28T20:30:31Z
+N;CHARSET=utf-8:Głowacki;;;;
+FN;CHARSET=utf-8:Głowacki
+ORG;CHARSET=utf-8:Zarząd;Radom
+ADR;WORK;POSTAL;CHARSET=utf-8:;25;Tartaczna;Radom;;;
+TITLE;CHARSET=utf-8:Referent ds. IT
+EMAIL;INTERNET:glowacki.kacper57@gmail.com
+TEL;PREF;WORK:510199035
+END:VCARD

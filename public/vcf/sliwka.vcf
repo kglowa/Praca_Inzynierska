@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+REV:2023-11-28T20:30:31Z
+N;CHARSET=utf-8:Sliwka;;;;
+FN;CHARSET=utf-8:Sliwka
+ORG;CHARSET=utf-8:Zakład Sprzedaży;Radom
+ADR;WORK;POSTAL;CHARSET=utf-8:;25;Tartaczna;Radom;;;
+TITLE;CHARSET=utf-8:Referent ds. Sprzedaży
+EMAIL;INTERNET:ole@k.pl
+TEL;PREF;WORK:785154265
+END:VCARD
