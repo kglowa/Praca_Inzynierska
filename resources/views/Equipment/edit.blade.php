@@ -88,12 +88,11 @@
                                     <button type="submit" class="btn btn-primary bg-dark" id="btn_edit">
                                         Zmień
                                     </button>
-{{--                                    <a class="float-end" href="{{route('equipment.index')}}">--}}
 
                                         <button type="button" class="btn btn-primary bg-dark" id="btn_pdf" data-id="{{$equipment->user_id}}" form="" >
                                         PDF
                                         </button>
-{{--                                    </a>--}}
+
                                     <button  type="button"  class="btn btn-danger btn-danger " id="btn_delete" data-id="{{$equipment->id}}" style="width: 65px; margin-left: 10px">
                                         X
                                     </button>
@@ -143,16 +142,20 @@
                         <script type="text/javascript">
                             $(document).ready(function() {
                                 $('#btn_pdf').on('click',function() {
-
+                                    Swal.fire({
+                                        title: "Protokół został wysłany!",
+                                        icon: "info"
+                                    }).then((result)=>{
                                      $.ajax({
                                          method: "POST",
                                          url: @js(route('order.store')),
                                          data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
                                          success: function(data) {
                                              console.log($('#btn_pdf').data("id"));
-                                             alert(data);
+
                                          },
                                      })
+                                    });
                                 })
                             });
                         </script>

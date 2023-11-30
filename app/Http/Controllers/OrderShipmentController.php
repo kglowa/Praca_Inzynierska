@@ -23,16 +23,9 @@ class OrderShipmentController extends Controller
      */
     public function post(Request $request)
     {
-       // $order = Request::createFromGlobals()->get("user_id");
-        //$user = DB::table('equipment')->where('user_id', $order)->first();
-        dd($request->all());
-//        var_dump($request->post("user_id"));
-//        var_dump($request->only(["user_id"]));
-//        var_dump($request->user_id);
-$userID = 1;
-$user = User::find($userID);
 
-//        dd($request->all());
+        $userID = $request->post("user_id");
+        $user = User::find($userID);
         Mail::to($user)->send(new Protocol());
         return ' ';
 
