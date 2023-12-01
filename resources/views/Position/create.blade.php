@@ -63,7 +63,7 @@
                             $('#position_delete').click(function() {
                                 Swal.fire({
                                     title: "Czy jesteś pewny?",
-                                    text: "Zmian nie da się przywrócić",
+                                    text: "Pamiętaj żeby usunąć wcześniej użytkowników przypisanych do tego stanowiska",
                                     icon: "warning",
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
@@ -77,10 +77,21 @@
                                             url: "http://127.0.0.1:8000/position/"+ $(this).data("id"),
                                             data:{_method: 'delete', _token: '{{ csrf_token() }}'}
 
-                                        })
+                                        }).fail(function (){
+                                            Swal.fire({
+                                                title: "Błąd!",
+                                                text: "Stanowisko które chciałeś usunąć posiada przypisanych do niego użytkowników",
+                                                icon: "error"
+                                            });
+                                        }).done(function (response){
+                                                Swal.fire({
+                                                    title: "Stanowisko zostało usunięte!",
+                                                    text: "",
+                                                    icon: "info"
+                                                }).then((result)=>{
+                                                    window.location.replace("http://127.0.0.1:8000/users/list/");
 
-                                            .done(function (response){
-                                                window.location.replace("http://127.0.0.1:8000/users/list/");
+                                                });
                                             })
                                     }
                                 });

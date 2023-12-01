@@ -106,7 +106,7 @@
                                 $('#btn_delete').on('click',function() {
                                     Swal.fire({
                                         title: "Czy jesteś pewny?",
-                                        text: "Zmian nie da się przywrócić",
+                                        text: "Pamiętaj żeby usunąć wcześniej użytkownika przypisanego do tego urządzenia",
                                         icon: "warning",
                                         showCancelButton: true,
                                         confirmButtonColor: "#3085d6",
@@ -120,11 +120,22 @@
                                                 url: "http://127.0.0.1:8000/equipment/"+ $(this).data("id"),
                                                 data:{_method: 'delete', _token: '{{ csrf_token() }}'}
 
-                                            })
+                                            }).fail(function (){
+                                                Swal.fire({
+                                                    title: "Błąd!",
+                                                    text: "Urządzenie które chciałeś usunąć posiada użytkownika",
+                                                    icon: "error"
+                                                });
+                                            }).done(function (response){
+                                                Swal.fire({
+                                                    title: "Urządzenie zostało usunięte!",
+                                                    text: "",
+                                                    icon: "info"
+                                                }).then((result)=>{
+                                                    window.location.replace("http://127.0.0.1:8000/equipment");
 
-                                                .done(function (response){
-                                                    window.location.replace("http://127.0.0.1:8000/equipment/");
-                                                })
+                                                });
+                                            })
                                         }
                                     });
 

@@ -18,7 +18,7 @@ use App\Http\Controllers\DepartmentController;
 */
 
 Route::get('/', function () {return view('welcome');});
-Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class, 'index'])->name('phonebook');
+Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class, 'Create_Vcards'])->name('phonebook');
 
 Route::get('mail', [\App\Http\Controllers\SendMainController::class, 'post'])->name('order.store');
 
@@ -40,7 +40,7 @@ Route::delete('department/{department}', [\App\Http\Controllers\DepartmentContro
 
 Route::get('position/create', [\App\Http\Controllers\PositionController::class, 'create'])->name('position.create');
 Route::post('position', [\App\Http\Controllers\PositionController::class, 'store'])->name('position.store')->middleware('auth');
-Route::delete('position/{department}', [\App\Http\Controllers\PositionController::class, 'destroy'])->name('position.destroy')->middleware('auth');
+Route::delete('position/{position}', [\App\Http\Controllers\PositionController::class, 'destroy'])->name('position.destroy')->middleware('auth');
 
 Route::get('/equipment', [EquipmentController::class, 'index'])->name( 'equipment.index')->middleware('auth');
 Route::get('equipment/create', [EquipmentController::class, 'create'])->name('equipment.create')->middleware('auth');

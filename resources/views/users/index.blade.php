@@ -43,39 +43,6 @@
         <td >@if(!is_null( $user->positions)){{$user->positions->name}}@endif</td>
         <td >@if(!is_null( $user->departments)){{$user->departments->name}} {{$user->departments->city}}@endif</td>
         <td>{{$user->email}}</td>
-
-{{--        <td>--}}
-{{--            <a href="{{route('users.edit',$user->id)}}">--}}
-{{--                <button class="btn btn-warning btn-sm">Zmień</button>--}}
-{{--            </a>--}}
-{{--        </td>--}}
-{{--            <td>--}}
-{{--                <button    class="btn btn-danger btn-sm " id="delete" data-id="{{$user->id}}">--}}
-{{--                    X--}}
-{{--                </button>--}}
-{{--                <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>--}}
-{{--                <script type="text/javascript">--}}
-{{--                    $(document).ready(function() {--}}
-{{--                        $('#delete').click(function() {--}}
-{{--                            Swal.fire({--}}
-{{--                                title: 'Czy napewno chcesz usunąć tego użytkownika?',--}}
-{{--                                showDenyButton: true,--}}
-{{--                                confirmButtonText: 'Tak',--}}
-{{--                                denyButtonText: `Nie`,--}}
-{{--                            }).then((result) => {--}}
-{{--                                $.ajax({--}}
-{{--                                    method:"DELETE",--}}
-{{--                                    url: "http://127.0.0.1:8000/users/"+ $(this).data("id"),--}}
-{{--                                    data:{_method: 'delete', _token: '{{ csrf_token() }}'}--}}
-
-{{--                                })--}}
-{{--                                    .done(function (response){--}}
-{{--                                        window.location.reload();--}}
-{{--                                    })--}}
-
-{{--                            })                        });--}}
-{{--                    });</script>--}}
-{{--        </td>--}}
     </tr>
     @endforeach
 

@@ -61,7 +61,7 @@
                                 $('#type_delete').click(function() {
                                     Swal.fire({
                                         title: "Czy jesteś pewny?",
-                                        text: "Zmian nie da się przywrócić",
+                                        text: "Pamiętaj żeby usunąć wcześniej urządzenia przypisane do tego typu",
                                         icon: "warning",
                                         showCancelButton: true,
                                         confirmButtonColor: "#3085d6",
@@ -75,11 +75,22 @@
                                                 url: "http://127.0.0.1:8000/category/"+ $(this).data("id"),
                                                 data:{_method: 'delete', _token: '{{ csrf_token() }}'}
 
-                                            })
-
-                                                .done(function (response){
+                                            }).fail(function (){
+                                                Swal.fire({
+                                                    title: "Błąd!",
+                                                    text: "Typ który chciałeś usunąć posiada przypisane do niego urządzenia",
+                                                    icon: "error"
+                                                });
+                                            }).done(function (response){
+                                                Swal.fire({
+                                                    title: "Typ został usunięty!",
+                                                    text: "",
+                                                    icon: "info"
+                                                }).then((result)=>{
                                                     window.location.replace("http://127.0.0.1:8000/equipment/");
-                                                })
+
+                                                });
+                                            })
                                         }
                                     });
 
