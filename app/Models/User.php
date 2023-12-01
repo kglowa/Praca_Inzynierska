@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,14 +47,15 @@ class User extends Authenticatable
     ];
 
     public function equipments(){
-        return $this->hasMany(Equipment::class,"user_id","id");
+        return $this->hasMany(Equipment::class,'user_id','id');
     }
     public function departments(){
 
         return $this->belongsTo(Department::class,'departments_id','id');
 
     }
-    public function positions(){
+    public function positions(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
 
         return $this->belongsTo(Position::class,'positions_id','id');
 

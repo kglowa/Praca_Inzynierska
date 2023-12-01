@@ -6,6 +6,7 @@ use App\Models\Equipment;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -14,13 +15,15 @@ use Illuminate\Queue\SerializesModels;
 class Protocol extends Mailable
 {
     use Queueable, SerializesModels;
+    public $mailData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($mailData)
     {
-        //
+        $this->mailData = $mailData;
+
     }
 
     /**
@@ -40,7 +43,9 @@ class Protocol extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.protocol',
+            view: 'mails.mail',
+            with: $this->mailData
+
         );
     }
 
@@ -51,6 +56,9 @@ class Protocol extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromData(fn () => $this->mailData['pdf']->output(), 'Protokół.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }

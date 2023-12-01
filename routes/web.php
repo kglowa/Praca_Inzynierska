@@ -20,15 +20,15 @@ use App\Http\Controllers\DepartmentController;
 Route::get('/', function () {return view('welcome');});
 Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class, 'index'])->name('phonebook');
 
-Route::post('mail', [\App\Http\Controllers\OrderShipmentController::class, 'post'])->name('order.store');
+Route::get('mail', [\App\Http\Controllers\SendMainController::class, 'post'])->name('order.store');
 
 
-Route::get('users/list', [UserController::class, 'index'])->name('users');
-Route::get('users/create', [UserController::class, 'create'])->name('users.create');
-Route::post('users', [UserController::class, 'store'])->name('users.store');
-Route::get('users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
-Route::post('users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('users/list', [UserController::class, 'index'])->name('users')->middleware('auth');
+Route::get('users/create', [UserController::class, 'create'])->name('users.create')->middleware('auth');
+Route::post('users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
+Route::get('users/edit/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
+Route::post('users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('auth');
 
 Route::get('category/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
 Route::post('category', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store')->middleware('auth');

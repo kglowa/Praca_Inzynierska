@@ -62,6 +62,7 @@
                         table.on('click', 'tbody tr', function () {
                             window.location.replace("http://127.0.0.1:8000/equipment/edit/"+ $(this).data("id"));
                         });
+
                     });
                 </script>
 

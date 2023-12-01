@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = User::all();
 //        $user = User::with('users')->get();
         return view('users.index',[
-            'users' => User::with('departments')->get()
+            'users' => User::with('departments','equipments','positions' )->get()
         ]);
     }
 

@@ -9,6 +9,7 @@
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('equipment.update', $equipment->id) }}">
+
                             @csrf
                             <div class="row mb-3">
                                 <label for="mark" class="col-md-4 col-form-label text-md-end">Marka</label>
@@ -146,15 +147,17 @@
                                         title: "Protokół został wysłany!",
                                         icon: "info"
                                     }).then((result)=>{
-                                     $.ajax({
-                                         method: "POST",
-                                         url: @js(route('order.store')),
-                                         data: {_method: 'post', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
-                                         success: function(data) {
-                                             console.log($('#btn_pdf').data("id"));
+                                        $.ajax({
+                                            method: "GET",
+                                            url: @js(route('order.store')),
+                                            data: {_method: 'get', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
+                                            success: function(data) {
+                                                console.log($('#btn_pdf').data("id"));
 
-                                         },
-                                     })
+                                            },
+                                        })
+
+
                                     });
                                 })
                             });

@@ -103,6 +103,7 @@
                     });
                     table.on('click', 'tbody tr', function () {
                         window.location.replace("http://127.0.0.1:8000/users/edit/"+ $(this).data("id"));
+
                     });
                 });
             </script>
