@@ -61,9 +61,8 @@
                                     </span>
                                     @enderror
 
-                                </div></div>
-                            <div class="row mb-3">
-                                <div class="col-4 md-6">
+
+
 
                             <button type="submit" class="btn btn-primary bg-dark" style="margin-top: 10px">
                                     Dodaj

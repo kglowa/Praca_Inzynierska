@@ -24,10 +24,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-
-
-
-
                                     <button type="submit" class="btn btn-primary bg-dark" style="margin-top: 10px">
                                         Dodaj
                                     </button></div></div>
