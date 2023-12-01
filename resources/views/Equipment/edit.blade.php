@@ -150,7 +150,7 @@
                                         $.ajax({
                                             method: "GET",
                                             url: @js(route('order.store')),
-                                            data: {_method: 'get', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id") },
+                                            data: {_method: 'get', _token: '{{ csrf_token() }}', user_id: $('#btn_pdf').data("id"), equipment_id: {{$equipment->id}} },
                                             success: function(data) {
                                                 console.log($('#btn_pdf').data("id"));
 

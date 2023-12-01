@@ -25,10 +25,11 @@ class SendMainController extends Controller
      */
     public function post(Request $request)
     {
-
+        $equipmentID = $request->get("equipment_id");
+        $equipment = Equipment::find($equipmentID);
         $userID = $request->get("user_id");
         $user = User::find($userID);
-        $data = ['user'=>$user];
+        $data = ['equipment'=>$equipment, 'user'=>$user];
         redirect('protocol')->with($userID);
         $pdf = app('dompdf.wrapper');
         $pdf->loadView('Mails/protocol', $data);
