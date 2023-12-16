@@ -11,6 +11,7 @@
                     <form method="POST" action="{{ route('users.store') }}">
                         @csrf
                         <div class="row mb-3">
+
                             <label for="name" class="col-md-4 col-form-label text-md-end">Imię</label>
 
                             <div class="col-md-6">
@@ -99,6 +100,17 @@
 
                                         <option value="{{$position->id}}">{{$position->name}}</option>
                                     @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="type" class="col-md-4 col-form-label text-md-end">Uprawnienia</label>
+                            <div class="col-md-6" id="select_div">
+                                <select class="js-example-basic-multiple "name="role_id" >
+                                        <option value="3">Użytkownik</option>
+                                        <option value="2">Administrator</option>
+
                                 </select>
 
                             </div>

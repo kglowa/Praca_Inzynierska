@@ -7,15 +7,7 @@
                 Lista użytkowników
             </div>
             <div class="col-6" style="margin-bottom: 20px">
-                <a class="float-end" href="{{route('users.create')}}">
-                    <button type="button" class="btn btn-warning">Dodaj</button>
-                </a>
-                <a class="float-end" href="{{route('department.create')}}">
-                    <button type="button" class="btn btn-warning" style="margin-right: 20px">Zakłady</button>
-                </a>
-                <a class="float-end" href="{{route('position.create')}}">
-                    <button type="button" class="btn btn-warning" style="margin-right: 20px">Stanowiska</button>
-                </a>
+
                 <a class="float-end" href="{{route('phonebook')}}">
                     <button type="button" class="btn btn-warning"  id="btn_phone"  name="btn_phone" style="margin-right: 20px">Książka telefoniczna</button>
                 </a>
@@ -25,25 +17,25 @@
                 <table class="table table-striped table-dark dataTable" id="user_table">
                     <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Imię</th>
                         <th scope="col">Nazwisko</th>
                         <th scope="col">Stanowisko</th>
                         <th scope="col">Zakład</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Telefon</th>
 
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($users as $user)
-                        <tr id="tr_data" data-id={{$user->id}} >
-                            <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->lastname}}</td>
                             <td >@if(!is_null( $user->positions)){{$user->positions->name}}@endif</td>
                             <td >@if(!is_null( $user->departments)){{$user->departments->name}} {{$user->departments->city}}@endif</td>
                             <td>{{$user->email}}</td>
-                        </tr>
+                            <td>{{$user->phone}}</td>
+
+                            </tr>
                     @endforeach
 
                     </tbody>
@@ -68,10 +60,7 @@
                             }
 
                         });
-                        table.on('click', 'tbody tr', function () {
-                            window.location.replace("http://127.0.0.1:8000/users/edit/"+ $(this).data("id"));
 
-                        });
                     });
                 </script>
 
@@ -81,3 +70,5 @@
 
 
 @endsection
+
+

@@ -15,11 +15,19 @@ class EquipmentController extends Controller
      */
     public function index():View
     {
-        $equipments = Equipment::all();
-//        $equipments = Equipment::with('users')->get();
-        return view('equipment.index',[
+        if(auth()->user()->hasRole('administrator')){
+            $equipments = Equipment::all();
+
+            return view('equipment.index',[
             'equipments' => Equipment::with('users','categories')->get()
-        ]);
+        ]);}
+        else{
+            $user = auth()->user();
+            $equipments = Equipment::where('user_id', $user->id)->get();
+            return view('equipment.user_index',[
+                'equipments' => Equipment::where('user_id', $user->id)->get()
+            ]);
+        }
     }
 
     /**

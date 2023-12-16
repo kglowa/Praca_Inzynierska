@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\Equipment;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Spatie\LaravelVcard\Facades\Vcard;
+use Laratrust\Traits\HasRolesAndPermissions;
 
 class UserController extends Controller
 {
@@ -18,11 +21,19 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::all();
-//        $user = User::with('users')->get();
-        return view('users.index',[
-            'users' => User::with('departments','equipments','positions' )->get()
-        ]);
+
+        if(auth()->user()->hasRole('administrator')){
+            $users = User::all();
+
+            return view('users.index',[
+                'users' => User::with('departments','equipments','positions')->get()
+            ]);}
+        else{
+            $users = User::all();
+            return view('users.user_index',[
+                'users' => User::with('departments','equipments','positions')->get()
+            ]);
+        }
     }
 
     /**
@@ -47,6 +58,7 @@ class UserController extends Controller
         $user = new User($request->all());
 
         $user -> save();
+        $user->addRole($request->get('role_id'), $user->id);
         return  redirect(route('users'));
     }
 
@@ -79,6 +91,9 @@ class UserController extends Controller
     {
         $user->fill($request->all());
         $user->save();
+
+        $user->AddRole($request->get('role_id'), $user->id);
+
         return  redirect(route('users'));
 
     }

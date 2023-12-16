@@ -22,8 +22,10 @@ Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class,
 
 Route::get('mail', [\App\Http\Controllers\SendMainController::class, 'post'])->name('order.store');
 
-
+Route::get('/equipment', [EquipmentController::class, 'index'])->name( 'equipment.index')->middleware('auth');
 Route::get('users/list', [UserController::class, 'index'])->name('users')->middleware('auth');
+
+Route::middleware(['role:administrator'])->group(function(){
 Route::get('users/create', [UserController::class, 'create'])->name('users.create')->middleware('auth');
 Route::post('users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
 Route::get('users/edit/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
@@ -42,7 +44,9 @@ Route::get('position/create', [\App\Http\Controllers\PositionController::class, 
 Route::post('position', [\App\Http\Controllers\PositionController::class, 'store'])->name('position.store')->middleware('auth');
 Route::delete('position/{position}', [\App\Http\Controllers\PositionController::class, 'destroy'])->name('position.destroy')->middleware('auth');
 
-Route::get('/equipment', [EquipmentController::class, 'index'])->name( 'equipment.index')->middleware('auth');
+
+
+
 Route::get('equipment/create', [EquipmentController::class, 'create'])->name('equipment.create')->middleware('auth');
 Route::post('equipment', [EquipmentController::class, 'store'])->name('equipment.store')->middleware('auth');
 Route::get('equipment/edit/{equipment}', [EquipmentController::class, 'edit'])->name('equipment.edit')->middleware('auth');
@@ -51,6 +55,7 @@ Route::post('equipment/{equipment}', [EquipmentController::class, 'update'])->na
 Route::get('equipment/add_user/{equipment}', [EquipmentController::class, 'add_user'])->name('equipment.add_user')->middleware('auth');
 
 
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

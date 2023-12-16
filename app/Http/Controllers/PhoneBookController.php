@@ -15,9 +15,9 @@ class PhoneBookController extends Controller
 
 
    public function Create_Vcards( User $user){
-       File::delete(public_path('KsiążkaTelefoniczna.zip'));
+//       File::delete(public_path('KsiążkaTelefoniczna.zip'));
 
-       File::makeDirectory(public_path('vcf'));
+//       File::makeDirectory(public_path('vcf'));
 
        foreach (User::all() as $user) {
            $vcard = new VCard();
