@@ -13,7 +13,13 @@
     }
 </style>
 <body>
-<a>Witaj!</a>
-<a>Utworzyliśmy dla Ciebie konto w aplikacji PTMS. Za chwilę otrzymasz dodatkowego maila z danymi logowania. Ze względów bezpieczeństwa, pamiętaj o wpisaniu danych do aplikacji keypass oraz późniejszym usunięciu maila.</a>
+<h2>Witaj {{$user->name}}!</h2>
+<a>Utworzyliśmy dla Ciebie konto w aplikacji PTMS.
+    <br>Poniżej znajduję się link do strony w której nadasz hasło do Twojego konta,
+    <br><br><a href="http://127.0.0.1:8000/users/reset/{{$user->id}}">Nadanie hasła</a><br><br>
+Pozdrawiamy,<br>
+Zespół PTMS</a>
+
+
 </body>
 </html>

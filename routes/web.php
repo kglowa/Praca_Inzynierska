@@ -20,7 +20,10 @@ use App\Http\Controllers\DepartmentController;
 Route::get('/', function () {return view('welcome');});
 Route::get('phone_book/card', [\App\Http\Controllers\PhoneBookController::class, 'Create_Vcards'])->name('phonebook');
 
-Route::get('mail', [\App\Http\Controllers\SendMainController::class, 'post'])->name('order.store');
+Route::get('mail', [\App\Http\Controllers\MailProtocolController::class, 'post'])->name('order.store');
+Route::get('new_account', [\App\Http\Controllers\NewAccountMailController::class, 'post'])->name('users.account');
+Route::get('users/reset/{user}', [\App\Http\Controllers\NewAccountMailController::class, 'edit'])->name('users.change');
+
 
 Route::get('/equipment', [EquipmentController::class, 'index'])->name( 'equipment.index')->middleware('auth');
 Route::get('users/list', [UserController::class, 'index'])->name('users')->middleware('auth');

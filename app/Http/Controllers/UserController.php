@@ -92,8 +92,6 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        $user->AddRole($request->get('role_id'), $user->id);
-
         return  redirect(route('users'));
 
     }

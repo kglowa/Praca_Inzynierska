@@ -109,7 +109,10 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary bg-dark" id="btn_edit">
+                                <button type="button" class="btn btn-primary bg-dark" id="btn_mail" data-id="{{$user->user_id}}" form="" >
+                                    Aktywacja
+                                </button>
+                                <button type="submit" class="btn btn-primary bg-dark" >
                                     Zmień
                                 </button>
                                 <button  type="button"  class="btn btn-danger btn-danger " id="user_delete" data-id="{{$user->id}}" style="width: 65px; margin-left: 10px">
@@ -160,6 +163,7 @@
 
                             })
                         });
+
                     </script>
                     <script type="text/javascript"></script>
                     <script>
@@ -167,6 +171,28 @@
                             $('.js-example-basic-multiple').select2({
                                 dropdownParent:'#select_div'
                             });
+                        });
+                    </script>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#btn_mail').on('click',function() {
+                                Swal.fire({
+                                    title: "Link aktywacyjny został wysłany!",
+                                    icon: "success"
+                                }).then((result)=>{
+                                    $.ajax({
+                                        method: "GET",
+                                        url: @js(route('users.account')),
+                                        data: {_method: 'get', _token: '{{ csrf_token() }}', user_id: {{$user->id}} },
+                                        success: function(data) {
+                                            console.log($('#btn_edit').data("id"));
+
+                                        },
+                                    })
+
+
+                                });
+                            })
                         });
                     </script>
                 </div>

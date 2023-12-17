@@ -107,7 +107,7 @@
                         <div class="row mb-3">
                             <label for="type" class="col-md-4 col-form-label text-md-end">Uprawnienia</label>
                             <div class="col-md-6" id="select_div">
-                                <select class="js-example-basic-multiple "name="role_id" >
+                                <select class="js-example-basic-multiple form-control "  multiple="multiple" name="role_id"  >
                                         <option value="3">Użytkownik</option>
                                         <option value="2">Administrator</option>
 
@@ -132,6 +132,7 @@
                             });
                         });
                     </script>
+
                 </div>
             </div>
         </div>

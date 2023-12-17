@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
-class SendMainController extends Controller
+class MailProtocolController extends Controller
 {
     /**
      * Remove the specified resource from storage.
